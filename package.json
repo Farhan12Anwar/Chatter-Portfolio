@@ -1,0 +1,23 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "Realtime Chat App With Rooms",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "author": "Farhan",
+  "license": "MIT",
+  "dependencies": {
+    "chatapp": "file:",
+    "express": "^4.18.2",
+    "moment": "^2.30.1",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.2",
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
