@@ -1,5 +1,3 @@
-// server.js
-
 const path = require("path");
 const http = require("http");
 const express = require("express");
@@ -12,7 +10,7 @@ const {
   userLeave,
   getRoomUsers,
 } = require("./utils/users");
-const Message = require("./public/models/Message"); // Import the Message model
+const Message = require("./public/models/Message");
 require("dotenv").config();
 
 const app = express();
@@ -20,26 +18,21 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 // Connect to MongoDB
-mongoose.connect(MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-// Check if MongoDB connection is successful
+
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
 });
 
-// Set static folder
 app.use(express.static(path.join(__dirname, "public")));
 
-// Serve index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// const botName = 'Auction Bot';
-
-// Run when client connects
 io.on("connection", (socket) => {
   socket.on("joinRoom", async ({ username, room }) => {
     const user = userJoin(socket.id, username, room);
